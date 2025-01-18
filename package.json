@@ -1,0 +1,24 @@
+{
+  "name": "tauri-axum-htmx",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logankeenan/tauri-axum-htmx.git"
+  },
+  "author": "Logan Keenan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/logankeenan/tauri-axum-htmx/issues"
+  },
+  "homepage": "https://github.com/logankeenan/tauri-axum-htmx#readme",
+  "description": "",
+  "dependencies": {
+    "xhr-fetch-proxy": "^1.0.0"
+  }
+}
