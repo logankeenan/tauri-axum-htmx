@@ -22,4 +22,7 @@ tauri = { version = "2", features = [] }
 tauri-plugin-shell = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-
+tauri-axum-htmx = { path = "../../../", version = "0.1.0" }
+axum-app = { path = "../../axum-app", version = "0.1.0" }
+axum = "0.8.1"
+tower-service = "0.3.3"

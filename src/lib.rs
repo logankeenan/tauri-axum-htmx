@@ -1,8 +1,9 @@
-use axum::http::{self, StatusCode};
+use axum::http::{self};
 use axum::response::Response;
 use axum::{body::Body, http::Request};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
+use std::fmt::Display;
 use thiserror::Error;
 
 #[derive(Error, Debug)]
@@ -54,27 +55,39 @@ pub struct LocalResponse {
     pub headers: HashMap<String, String>,
 }
 
-impl From<LocalResponse> for Response<Body> {
-    fn from(local_response: LocalResponse) -> Response<Body> {
-        let mut response_builder = Response::builder().status(local_response.status_code);
+impl LocalResponse {
+    pub fn internal_server_error(error: impl Display) -> Self {
+        let error_message = format!("An error occured: {}", error);
+        LocalResponse {
+            status_code: 500,
+            body: error_message.into(),
+            headers: Default::default(),
+        }
+    }
+}
 
-        for (key, value) in local_response.headers.iter() {
-            response_builder = response_builder.header(key, value);
+impl LocalResponse {
+    pub async fn from_response(response: Response) -> Self {
+        let code = response.status();
+        let response_headers = response.headers().clone();
+        let bytes_result = axum::body::to_bytes(response.into_body(), usize::MAX).await;
+
+        let mut headers: HashMap<String, String> = HashMap::new();
+        for (key, value) in response_headers.iter() {
+            headers.insert(key.to_string(), value.to_str().unwrap().to_string());
         }
 
-        let response = match local_response.body.is_empty() {
-            true => response_builder.body(Body::empty()),
-            false => response_builder.body(local_response.body.into()),
-        };
-        
-        match response {
-            Ok(response) => response,
-            Err(_) => {
-                let mut internal_server_error = Response::new(Body::empty());
-                *internal_server_error.status_mut()  = StatusCode::INTERNAL_SERVER_ERROR;
-                
-                internal_server_error
-            }
+        match bytes_result {
+            Ok(data) => LocalResponse {
+                status_code: code.as_u16(),
+                body: data.to_vec(),
+                headers,
+            },
+            Err(_) => LocalResponse {
+                status_code: code.as_u16(),
+                body: Vec::new(),
+                headers: headers.clone(),
+            },
         }
     }
 }
