@@ -4,6 +4,7 @@ body {
     margin: 0 auto;
     padding: 20px;
     background-color: #f5f5f5;
+    font-size: 16px;
 }
 
 h1 {
@@ -23,6 +24,7 @@ input[type="text"] {
     border: 1px solid #ddd;
     border-radius: 4px;
     width: 300px;
+    font-size: 16px;
 }
 
 button {
