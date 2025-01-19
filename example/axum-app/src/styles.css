@@ -34,10 +34,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #45a049;
-}
-
 ul {
     list-style: none;
     padding: 0;
@@ -70,4 +66,29 @@ li {
 input[type="checkbox"] {
     margin-right: 10px;
     transform: scale(1.2);
+}
+
+.checkbox-button {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #fff;
+    margin-right: 8px;
+}
+
+.checkbox-button.checked {
+    background: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.checkbox-button:hover {
+    border-color: #999;
 }

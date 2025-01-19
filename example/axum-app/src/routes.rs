@@ -36,7 +36,9 @@ pub async fn list_todos(State(state): State<AppState>) -> Html<String> {
             r#"
             <li>
                 <form style="display: inline; margin: 0;" action="/todo/{}/toggle" method="post">
-                    <input type="checkbox" {}>
+                    <button type="submit" class="checkbox-button {}">
+                        {}
+                    </button>
                 </form>
                 <span class="todo-text" style="{}">
                     {}
@@ -48,6 +50,7 @@ pub async fn list_todos(State(state): State<AppState>) -> Html<String> {
             "#,
             todo.id,
             if todo.completed { "checked" } else { "" },
+            if todo.completed { "✓" } else { "" },
             if todo.completed {
                 "text-decoration: line-through; color: #888;"
             } else {
