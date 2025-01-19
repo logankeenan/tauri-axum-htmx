@@ -12,7 +12,7 @@ env:
 jobs:
   check:
     name: Check
-    runs-on: self-hosted
+    runs-on: self-hostg
     defaults:
       run:
         working-directory: ./example/axum-app
