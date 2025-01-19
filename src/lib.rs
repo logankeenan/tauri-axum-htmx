@@ -1,10 +1,12 @@
 use axum::http::{self};
 use axum::response::Response;
+use axum::Router;
 use axum::{body::Body, http::Request};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fmt::Display;
 use thiserror::Error;
+use tower_service::Service;
 
 #[derive(Error, Debug)]
 pub enum Error {
@@ -24,7 +26,17 @@ pub struct LocalRequest {
 }
 
 impl LocalRequest {
-    pub fn to_axum_request(&self) -> Result<http::Request<Body>, Error> {
+    pub async fn send_to_router(self, router: &mut Router) -> LocalResponse {
+        match self.to_axum_request() {
+            Ok(request) => match router.call(request).await {
+                Ok(response) => LocalResponse::from_response(response).await,
+                Err(error) => LocalResponse::internal_server_error(error),
+            },
+            Err(error) => LocalResponse::internal_server_error(error),
+        }
+    }
+
+    fn to_axum_request(&self) -> Result<http::Request<Body>, Error> {
         let uri = self.uri.to_string();
         let mut request_builder = match self.method.to_uppercase().as_str() {
             "GET" => Ok(Request::get(uri)),

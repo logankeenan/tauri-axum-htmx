@@ -4,7 +4,6 @@ use axum::Router;
 use axum_app::create_axum_app;
 use tauri::{async_runtime::Mutex, State};
 use tauri_axum_htmx::{LocalRequest, LocalResponse};
-use tower_service::Service;
 
 struct AppState {
     router: Arc<Mutex<Router>>,
@@ -17,23 +16,19 @@ async fn local_app_request(
 ) -> Result<LocalResponse, ()> {
     let mut router = state.router.lock().await;
 
-    match local_request.to_axum_request() {
-        Ok(request) => match router.call(request).await {
-            Ok(response) => Ok(LocalResponse::from_response(response).await),
-            Err(error) => Ok(LocalResponse::internal_server_error(error)),
-        },
-        Err(error) => Ok(LocalResponse::internal_server_error(error)),
-    }
+    let response = local_request.send_to_router(&mut *router).await;
+
+    Ok(response)
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    let router = create_axum_app();
-    
+    let router: Router = create_axum_app();
+
     let app_state = AppState {
         router: Arc::new(Mutex::new(router)),
     };
-    
+
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
         .manage(app_state)

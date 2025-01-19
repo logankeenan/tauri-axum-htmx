@@ -7,6 +7,7 @@ edition = "2021"
 axum = "0.8.1"
 serde = { version = "1.0.217", features = ["derive"] }
 thiserror = "2.0.11"
+tower-service = "0.3.3"
 
 [lib]
 path = "src/lib.rs"

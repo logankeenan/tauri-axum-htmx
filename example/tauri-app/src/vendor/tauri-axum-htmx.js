@@ -1,3 +1,5 @@
+const { invoke } = window.__TAURI__.core;
+
 let localAppRequestCommand = "local_app_request";
 
 export function initialize(url, localAppRequestCommandOverride) {
@@ -23,12 +25,15 @@ function proxyFetch() {
       return originalFetch(...args);
     }
 
+    console.log("options.body: ", options?.body);
+    
     const request = {
       uri: url,
       method: options?.method || "GET",
       headers: options?.headers || {},
       ...(options?.body && { body: options.body }),
     };
+    
     let response = await invoke(localAppRequestCommand, {
       localRequest: request,
     });
@@ -50,6 +55,7 @@ function proxyFetch() {
     const decoder = new TextDecoder("utf-8");
     const bodyText = decoder.decode(bodyByteArray);
 
+    console.log("bodyText ", bodyText);
     const status = parseInt(response.status_code);
     const headers = new Headers(response.headers);
     return new Response(bodyText, { status, headers });

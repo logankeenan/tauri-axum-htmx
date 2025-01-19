@@ -36,7 +36,7 @@ pub async fn list_todos(State(state): State<AppState>) -> Html<String> {
             r#"
             <li>
                 <form style="display: inline; margin: 0;" action="/todo/{}/toggle" method="post">
-                    <input type="checkbox" onChange="this.form.submit()" {}>
+                    <input type="checkbox" {}>
                 </form>
                 <span class="todo-text" style="{}">
                     {}

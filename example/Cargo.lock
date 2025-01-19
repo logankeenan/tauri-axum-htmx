@@ -3366,6 +3366,7 @@ dependencies = [
  "axum",
  "serde",
  "thiserror 2.0.11",
+ "tower-service",
 ]
 
 [[package]]
