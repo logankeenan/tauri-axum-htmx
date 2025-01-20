@@ -16,7 +16,7 @@ async fn local_app_request(
 ) -> Result<LocalResponse, ()> {
     let mut router = state.router.lock().await;
 
-    let response = local_request.send_to_router(&mut *router).await;
+    let response = local_request.send_to_router(&mut router).await;
 
     Ok(response)
 }
