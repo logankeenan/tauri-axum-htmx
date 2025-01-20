@@ -50,4 +50,4 @@ jobs:
         run: cargo tauri build --no-bundle --ci
         
       - name: Build iOS
-        run: cargo tauri ios build --no-bundle --ci
+        run: cargo tauri ios build --ci
