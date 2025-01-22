@@ -4,9 +4,7 @@
   "version": "0.1.0",
   "identifier": "com.tauri-app.app",
   "build": {
-    "frontendDist": [
-      "../src"
-    ]
+    "frontendDist": "../src"
   },
   "app": {
     "withGlobalTauri": true,
