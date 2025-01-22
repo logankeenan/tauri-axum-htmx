@@ -48,6 +48,3 @@ jobs:
 
       - name: Build Destkop
         run: cargo tauri build --no-bundle --ci
-        
-      - name: Build iOS
-        run: cargo tauri ios build --ci
