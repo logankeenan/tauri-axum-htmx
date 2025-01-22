@@ -13,6 +13,8 @@ jobs:
   check:
     name: Check
     runs-on: self-hosted
+    env:
+      TAURI_APPLE_DEVELOPMENT_TEAM: does-not-matter-for-ci-testing
     defaults:
       run:
         working-directory: ./example/tauri-app
