@@ -1,13 +1,13 @@
 let localAppRequestCommand = "local_app_request";
 
-export function initialize(url, localAppRequestCommandOverride) {
+export function initialize(initialPath, localAppRequestCommandOverride) {
   if (localAppRequestCommandOverride) {
     localAppRequestCommand = localAppRequestCommandOverride;
   }
 
   proxyFetch();
   window.addEventListener("DOMContentLoaded", async () => {
-    const response = await window.fetch("/");
+    const response = await window.fetch(initialPath);
     document.documentElement.innerHTML = await response.text();
 
     htmx.process(document.documentElement);
