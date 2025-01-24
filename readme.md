@@ -7,6 +7,8 @@ the server is the Tauri rust backend running an Axum application. Requests are
 sent over the Tauri FFI bridge to be processed by the Axum application and the
 response is sent back to the webview to be updated by Htmx.
 
+Demo and example [source](example):
+
 ## Getting started
 
 Create a vanilla Tauri project and initialize tauri-axum-htmx in src/index.html
