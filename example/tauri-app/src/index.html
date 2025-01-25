@@ -21,5 +21,10 @@
             crossorigin="anonymous"
         ></script>
         <script type="module" src="/main.js" defer></script>
+        <script type="module">
+            import { initialize } from "https://unpkg.com/tauri-axum-htmx";
+
+            initialize("/");
+        </script>
     </head>
 </html>

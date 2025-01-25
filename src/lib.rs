@@ -18,7 +18,7 @@
 //!   <head>
 //!     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
 //!     <script type="module">
-//!       import { initialize } from "https://unpkg.com/htmx.org/tauri-axum-htmx";
+//!       import { initialize } from "https://unpkg.com/tauri-axum-htmx";
 //!
 //!       initialize("/"); // the initial path for the application to start on
 //!     </script>

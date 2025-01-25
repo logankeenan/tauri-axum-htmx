@@ -1,3 +1,5 @@
+const { invoke } = window.__TAURI__.core;
+
 let localAppRequestCommand = "local_app_request";
 
 export function initialize(initialPath, localAppRequestCommandOverride) {
