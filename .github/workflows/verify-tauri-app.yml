@@ -43,16 +43,9 @@ jobs:
       
       - uses: Swatinem/rust-cache@v2
       
-      - name: Cache Tauri CLI
-        id: cache-tauri-cli
-        uses: actions/cache@v4
+      - uses: taiki-e/cache-cargo-install-action@v2
         with:
-          path: ~/.cargo/bin/tauri
-          key: ${{ runner.os }}-tauri-cli-2.2.4
-      
-      - name: Install Tauri CLI
-        if: steps.cache-tauri-cli.outputs.cache-hit != 'true'
-        run: cargo install tauri-cli --version "2.2.4" --locked
+          tool: tauri-cli@2.2.4  
         
       - name: Check formatting
         run: cargo fmt --all -- --check
