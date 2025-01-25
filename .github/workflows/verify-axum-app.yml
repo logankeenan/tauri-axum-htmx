@@ -10,8 +10,8 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  check:
-    name: Check
+  verify-axum-app:
+    name: Verify Axum App
     runs-on: ubuntu-latest
     defaults:
        run:

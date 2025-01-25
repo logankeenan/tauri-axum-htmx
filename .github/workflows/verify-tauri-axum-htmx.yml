@@ -10,8 +10,8 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  check:
-    name: Check
+  verify-tauri-axum-htmx:
+    name: Verify Tauri Axum Htmx
     runs-on: ubuntu-latest
         
     steps:

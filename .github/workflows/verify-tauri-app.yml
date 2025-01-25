@@ -10,8 +10,8 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  check:
-    name: Check
+  verify-tauri-app:
+    name: Verify Tauri App
     runs-on: ubuntu-latest
     defaults:
       run:
