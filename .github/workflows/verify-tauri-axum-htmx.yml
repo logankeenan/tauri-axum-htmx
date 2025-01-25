@@ -1,4 +1,4 @@
-name: Verify Axum App
+name: Verify Tauri Axum Htmx
 
 on:
   push:
@@ -13,9 +13,6 @@ jobs:
   check:
     name: Check
     runs-on: self-hosted
-    defaults:
-      run:
-        working-directory: ./example/axum-app
         
     steps:
       - uses: actions/checkout@v3
@@ -48,3 +45,6 @@ jobs:
 
       - name: Build
         run: cargo build
+
+      - name: Test
+        run: cargo test
