@@ -1,4 +1,10 @@
 # Tauri Axum HTMX
+[![Crates.io](https://img.shields.io/crates/v/tauri-axum-htmx)](https://crates.io/crates/tauri-axum-htmx)
+[![docs.rs](https://img.shields.io/docsrs/tauri-axum-htmx)](https://docs.rs/tauri-axum-htmx)
+[![npm version](https://img.shields.io/npm/v/tauri-axum-htmx.svg)](https://www.npmjs.com/package/tauri-axum-htmx) 
+[![unpkg](https://img.shields.io/badge/unpkg-browse-blue)](https://unpkg.com/browse/tauri-axum-htmx/)
+
+
 
 Build interactive UIs in Tauri applications using HTMX and Axum, enabling server-side rendering patterns by running the Axum app in the Tauri backend.
 

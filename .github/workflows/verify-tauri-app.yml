@@ -12,14 +12,27 @@ env:
 jobs:
   check:
     name: Check
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./example/tauri-app
         
     steps:
       - uses: actions/checkout@v3
-
+      
+      - name: Install system dependencies
+        run: |
+            sudo apt-get update
+            sudo apt-get install -y \
+              libgtk-3-dev \
+              libwebkit2gtk-4.1-dev \
+              libappindicator3-dev \
+              librsvg2-dev \
+              patchelf \
+              libgdk3.0-cil \
+              libgdk-pixbuf2.0-dev \
+              libsoup-3.0-dev
+          
       - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:
@@ -40,7 +53,7 @@ jobs:
       - name: Install Tauri CLI
         if: steps.cache-tauri-cli.outputs.cache-hit != 'true'
         run: cargo install tauri-cli --version "2.2.4" --locked
-      
+        
       - name: Check formatting
         run: cargo fmt --all -- --check
 
