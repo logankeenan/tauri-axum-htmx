@@ -24,5 +24,5 @@ serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tauri-axum-htmx = { path = "../../../", version = "0.1.0" }
 axum-app = { path = "../../axum-app", version = "0.1.0" }
-axum = "0.8.3"
+axum = "0.8.4"
 tower-service = "0.3.3"
