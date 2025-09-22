@@ -14,4 +14,4 @@ path = "src/lib.rs"
 [dependencies]
 axum = "0.8.4"
 tokio = { version = "1.47.1", features = ["full"] }
-serde = { version = "1.0.225", features = ["derive"] }
+serde = { version = "1.0.226", features = ["derive"] }
