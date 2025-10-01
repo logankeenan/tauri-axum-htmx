@@ -12,6 +12,6 @@ name = "axum_app"
 path = "src/lib.rs"
 
 [dependencies]
-axum = "0.8.4"
+axum = "0.8.6"
 tokio = { version = "1.47.1", features = ["full"] }
 serde = { version = "1.0.225", features = ["derive"] }
